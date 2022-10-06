@@ -1,3 +1,4 @@
+import os
 import pygame
 from levels_menu import levels_menu
 
@@ -19,12 +20,20 @@ class DataLoad:
     global bg_image
     global bg_image_rect
 
-    btn_play_img = pygame.image.load("img/btn-play.png")
+   
+
+    btn_play_img = pygame.image.load("img/btn-play.jpg")
     btn_play_rect = btn_play_img.get_rect()
  
 
     def btn_play():
-        screen.blit(btn_play_img,(450,250))
+
+        angle = 0
+
+        angle += 10
+        angle %= 360
+        upgrade_image = pygame.transform.scale(btn_play_img,(185,75))
+        screen.blit(upgrade_image,(450,250))
 
     def harry_potter_text():
         font_text_harry = pygame.font.Font("Harry.ttf",55)

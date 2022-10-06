@@ -1,7 +1,8 @@
 import os
 from tkinter import *
 from PIL import Image , ImageTk
-from main import main_level_one
+from levels.level_two import level_two
+from levels.main import main_level_one
 
 
 
@@ -22,12 +23,13 @@ def levels_menu():
             def ButtonLevelOne():
                 main_level_one()
             
-
+            def ButtonLevelTwo():
+                level_two()
 
                 
 
             btn_level_one = Button(master=root,text="1",font=("bold",15),width=7,height=3,bg="#3333CC",fg="#FFCC00",command=ButtonLevelOne)
-            btn_level_two = Button(master=root,text="2",font=("bold",15),width=7,height=3,bg="#3333CC",fg="#FFCC00")
+            btn_level_two = Button(master=root,text="2",font=("bold",15),width=7,height=3,bg="#3333CC",fg="#FFCC00",command=ButtonLevelTwo)
             btn_level_three = Button(master=root,text="3",font=("bold",15),width=7,height=3,bg="#3333CC",fg="#FFCC00")
             btn_level_four = Button(master=root,text="4",font=("bold",15),width=7,height=3,bg="#3333CC",fg="#FFCC00")
             btn_level_five = Button(master=root,text="5",font=("bold",15),width=7,height=3,bg="#3333CC",fg="#FFCC00")

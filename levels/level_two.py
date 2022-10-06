@@ -3,9 +3,10 @@ import socket
 import random
 
 
-def main_level_one():
+def level_two():
     pygame.init()
 
+    # adress github : https://github.com/Sebik3012Sk/Harry_Potter_Game.git
 
     width = 1000
     height = 600
@@ -20,7 +21,7 @@ def main_level_one():
     icon = pygame.image.load("img/harryPotter.png")
     bullet = pygame.image.load("img/egg-icon.png")
     btn_quit_game = pygame.image.load("img/quit-game.png")
-
+    ball_fire_attack = pygame.image.load("./img/fire-shot.jpg")
 
     harry_potter_rect = harry_potter.get_rect()
     hedvika_rect = hedvika.get_rect()
@@ -28,6 +29,7 @@ def main_level_one():
     goblet_rect = goblet.get_rect()
     bullet_rect = bullet.get_rect()
     btn_quit_rect = btn_quit_game.get_rect()
+    ballFire_attack = ball_fire_attack.get_rect()
 
     background_image_rect.center = (width//2,400)
 
@@ -48,7 +50,7 @@ def main_level_one():
 
     score = 0
 
-    harry_potter_text = font_root.render("Level 1",True,(255,255,255))
+    harry_potter_text = font_root.render("Level 2",True,(255,255,255))
     victory_text = font_root_harry.render("",True,(255,255,255))
 
     
@@ -70,6 +72,9 @@ def main_level_one():
     bullet_rect.centerx = -3
     bullet_rect.centery = -3
 
+    ballFire_attack.centerx = -10
+    ballFire_attack.centery = -10
+
     fps = 120
     clock = pygame.time.Clock()
 
@@ -77,9 +82,6 @@ def main_level_one():
         for event in pygame.event.get():
             if(event.type == pygame.QUIT or event.type == pygame.K_ESCAPE):
                 run = False
-            elif(event.type == pygame.MOUSEMOTION):
-                harry_potter_rect.x = event.pos[0]
-                harry_potter_rect.y = event.pos[1]
 
             
         
@@ -91,6 +93,11 @@ def main_level_one():
             harry_potter_rect.y += vel
         elif(keys[pygame.K_RIGHT] and harry_potter_rect.right < width):
             harry_potter_rect.x += vel
+
+            if(harry_potter_rect.centerx > 200):
+                    ballFire_attack.centerx -= 20
+                    ballFire_attack.centery = 350
+
         elif(keys[pygame.K_LEFT] and harry_potter_rect.left > 0):
             harry_potter_rect.x -= vel
 
@@ -107,7 +114,10 @@ def main_level_one():
         if(bullet_rect.centerx < -2):
             pass
         else:
-            bullet_rect.centerx += vel   
+            bullet_rect.centerx += vel
+
+       
+
 
         if(bullet_rect.colliderect(hedvika_rect)):
             score += 1
@@ -165,6 +175,7 @@ def main_level_one():
         screen.blit(bullet,bullet_rect)
         screen.blit(victory_text,(width//2,350))
         screen.blit(btn_quit_game,(930,21))
+        screen.blit(ball_fire_attack,ballFire_attack)
         pygame.display.update()
         clock.tick(fps)
 
